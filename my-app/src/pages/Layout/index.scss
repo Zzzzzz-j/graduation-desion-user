@@ -1,0 +1,80 @@
+.layout-contaniner {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #fff;
+  .header {
+    background: #fff;
+  }
+  .layout-user {
+    float: right;
+    font-size: 17px;
+    font-weight: 300;
+  }
+  .logo {
+    float: left;
+    width: 700px;
+    background: rgba(255, 255, 255, 0.2);
+    text-align: start;
+    padding-left: 200px;
+  }
+  .menu {
+    // width: 300px;
+    .menu-item {
+      font-size: 18px;
+      font-weight: 300;
+    }
+  }
+
+  .logo-img {
+    width: 100px;
+    height: 100px;
+    margin: 50px 0 70px;
+  }
+
+  .ant-layout-content .site-layout {
+    margin-top: 40px;
+  }
+
+  .site-layout-background {
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .footer-security {
+    width: 100%;
+    padding: 20px 200px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .security-main {
+      width: 320px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      .security-img {
+        width: 60px;
+      }
+      .security-body {
+        width: 240px;
+        .title {
+          font-size: 17px;
+          font-weight: 700;
+          text-align: start;
+          margin-bottom: 1px;
+        }
+        .text {
+          font-size: 12px;
+          text-align: start;
+          color: rgba(0,0,0,0.6);
+        }
+      }
+    }
+  }
+}
+
+.changepwd-footer {
+  width: 100%;
+  margin-top: 30px;
+  text-align: end;
+}

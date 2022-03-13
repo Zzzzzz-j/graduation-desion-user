@@ -1,0 +1,74 @@
+.home-page {
+    width: 100%;
+    height: 100%;
+
+    .loan-center {
+        width: 100%;
+        .title-text {
+            font-size: 17px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        .loan-main {
+            width: 100%;
+            padding: 20px 160px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .loan-item {
+                width: 570px;
+                height: 260px;
+                background-color: #f8f8f8;
+                border-radius: 5px;
+                padding: 20px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: row;
+                .item-num {
+                    width: 60px;
+                    font-size: 34px;
+                    font-weight: 600;
+                    color: #e6322e;
+                    text-align: center;
+                }
+                .item-body {
+                    width: 400px;
+                    .item-title {
+                        font-size: 29px;
+                        font-weight: 500;
+                        text-align: start;
+                        margin-bottom: 10px;
+                    }
+                    .item-text {
+                        text-align: start;
+                        font-size: 16px;
+                        font-weight: 340;
+                        margin-bottom: 1px;
+                    }
+                }
+            }
+            .loan-item:hover {
+                background-color: #fff;
+                box-shadow: 3px 3px 10px #888888;
+            }
+        }
+    }
+    .go-loan {
+        width: 100%;
+        height: 120px;
+        padding: 20px 0;
+        text-align: center;
+        .button {
+            width: 300px;
+            height: 50px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            background-color: #e6322e;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #bf1d1d;
+        }
+    }
+}

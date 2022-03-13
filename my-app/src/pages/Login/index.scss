@@ -1,0 +1,243 @@
+.login {
+    width: 100%;
+    min-height: 100vh;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    margin: -20px 0 50px;
+    position: relative;
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 768px;
+        max-width: 100%;
+        min-height: 480px;
+    }
+    .login-header {
+        height: 100px;
+        width: 100%;
+        padding-left: 40px;
+        padding-top: 20px;
+        font-size: 30px;
+        font-weight: 400;
+        text-align: start;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .register-form {
+        padding: 40px 0 0 12px;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+        .register-form-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(114, 112, 112);
+            margin-bottom: 20px;
+        }
+    }
+    .login-form {
+        padding: 60px 0 0 12px;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+        .login-form-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(114, 112, 112);
+            margin-bottom: 30px;
+        }
+    }
+    .sign-in-container {
+        left: 0;
+        width: 50%;
+        z-index: 2;
+    }
+
+    .container.right-panel-active .sign-in-container {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    .sign-up-container {
+        left: 0;
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+    }
+
+    .container.right-panel-active .sign-up-container {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+        animation: show 0.6s;
+    }
+    .input {
+        background-color: #eee !important;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 260px;
+    }
+
+    h1 {
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 26px;
+    }
+
+    p {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 2.5px;
+        margin: 20px 0 30px;
+    }
+
+    button {
+        border-radius: 20px;
+        border: 1px solid #ff4b2b;
+        background-color: #ff4b2b;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+    }
+
+    button.ghost {
+        background-color: transparent;
+        border-color: #ffffff;
+    }
+
+    .btn {
+        border-radius: 20px;
+        border: 1px solid #ff4b2b;
+        background-color: #ff4b2b;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        margin-top: 20px;
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .btn:focus {
+        outline: none;
+    }
+
+    @keyframes show {
+        0%,
+        49.99% {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        50%,
+        100% {
+            opacity: 1;
+            z-index: 5;
+        }
+    }
+
+    .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.6s ease-in-out;
+        z-index: 100;
+    }
+
+    .container.right-panel-active .overlay-container {
+        transform: translateX(-100%);
+    }
+
+    .overlay {
+        background: #ff416c;
+        background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+        color: #ffffff;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .container.right-panel-active .overlay {
+        transform: translateX(50%);
+    }
+
+    .overlay-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .overlay-left {
+        transform: translateX(-20%);
+    }
+
+    .container.right-panel-active .overlay-left {
+        transform: translateX(0);
+    }
+
+    .overlay-right {
+        right: 0;
+        transform: translateX(0);
+    }
+
+    .container.right-panel-active .overlay-right {
+        transform: translateX(20%);
+    }
+    .ant-input-affix-wrapper > input.ant-input {
+        padding: 0;
+        border: none;
+        outline: none;
+        background: #eee;
+    }
+
+    .ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input, 
+    .ant-form-item-has-error :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper, 
+    .ant-form-item-has-error :not(.ant-input-number-affix-wrapper-disabled):not(.ant-input-number-affix-wrapper-borderless).ant-input-number-affix-wrapper, 
+    .ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover, 
+    .ant-form-item-has-error :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover, 
+    .ant-form-item-has-error :not(.ant-input-number-affix-wrapper-disabled):not(.ant-input-number-affix-wrapper-borderless).ant-input-number-affix-wrapper:hover {
+        background: #eee;
+    }
+}
