@@ -65,7 +65,7 @@ export default function HomePage() {
                 </div>
             </div>
             <div className="go-loan">
-                <button className="button">立即贷款</button>
+                <button className="button" onClick={() => history('/LoanCenter')}>立即贷款</button>
             </div>
         </div>
     )

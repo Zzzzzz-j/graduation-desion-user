@@ -16,7 +16,7 @@ const { Header, Content, Footer } = Layout;
 
 export default function AccountManage(props) {
     const [visible, setVisible] = useState(false);
-    const [state, setState] = useState('/LoanApproval/0');
+    const [state, setState] = useState('/HomePage');
 
     const dispatch = useDispatch();
     const userInfo = useSelector(state => state.user_info);
@@ -143,15 +143,9 @@ export default function AccountManage(props) {
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     <div className="footer-security">
-                        <div className="security-main">
-                            <div className="security-img">
-                                <img style={{ width: '50px', height: '50px' }} src={icon1} alt="" />
-                            </div>
-                            <div className="security-body">
-                                <p className="title">协助维权</p>
-                                <p className="text">蒙受经济损失，可申请百度协助</p>
-                            </div>
-                        </div>
+                        {
+                            securityFooter(icon1,'协助维权','蒙受经济损失，可申请百度协助')
+                        }
                         {
                             securityFooter(icon3,'虚假赔偿','遇到品牌或资质冒用，可申请百度保障')
                         }
