@@ -45,49 +45,43 @@ module.exports = {
     },
     async changepwd(req, res) {
         const { password, id } = req.body;
-        const results = await model.deleteByUserId(password, id);
+        const results = await model.updatePassword(password, id);
         if (results.affectedRows) {
-            res.status(200).json({ status: 200, message: '删除成功!' });
+            res.status(200).json({ status: 200, message: '修改成功!' });
         } else {
-            await res.status(200).json({ status: 1001, message: '删除失败!' });
+            await res.status(200).json({ status: 1001, message: '修改失败!' });
         }
     },
-    async getAccountList(req, res) {
-        const { pageNum, pageSize } = req.query;
-        const results = await model.getAccountList();
-        const length = results.length;
-        if (length > 0) {
-            results.reverse();
-            if(parseInt(pageNum) * parseInt(pageSize) > length) {
-                res.json({
-                    pageNum: pageNum,
-                    pageSize: pageSize,
-                    total: length,
-                    status: 200,
-                    state: 1,
-                    data: [...results.slice((pageNum - 1) * 10)]
-                })
+    async saveLoanApply(req, res) {
+        const { id, name, money, startTime, endTime, time, rate } = req.body;
+        const results = await model.saveLoanApply(id, name, money, startTime, endTime, time, rate, 0);
+        if (results.insertId) { // 通过判断insertId是不是有正常值，如果有，说明插入成功
+            res.status(200).json({ status: 200, message: '提交成功!' });
+        } else {
+            await res.status(200).json({ status: 1002, message: '提交失败!' });
+        }
+    },
+    async saveUserInfo(req, res) {
+        const { id, name, age, gender, phone, id_number, idCardFront, idCardReverse, address, bank_card } = req.body;
+        const results = await model.saveUserInfo(id, name, age, gender, phone, id_number, idCardFront, idCardReverse, address, bank_card);
+        if (results.insertId) { // 通过判断insertId是不是有正常值，如果有，说明插入成功
+            const aws = await model.updateInfoStatus(1,id);
+            if(aws.affectedRows) {
+                res.status(200).json({ status: 200, message: '提交成功!' });
             } else {
-                res.json({
-                    pageNum: pageNum,
-                    pageSize: pageSize,
-                    total: length,
-                    status: 200,
-                    state:2,
-                    data: [...results.slice((pageNum - 1) * 10 , pageNum * 10)]
-                })
+                res.status(200).json({ status: 1001, message: '提交失败!' });
             }
         } else {
-            await res.status(404);
+            await res.status(200).json({ status: 1002, message: '提交失败!' });
         }
     },
-    async deleteAccount(req, res) {
-        const { id } = req.body;
-        const results = await model.deleteByUserId(id);
-        if (results.affectedRows) {
-            res.status(200).json({ status: 200, message: '删除成功!' });
+    async getUserDetails(req, res) {
+        const { id } = req.query;
+        const results = await model.getUserInfoById(id);
+        if (results.length > 0) {
+            res.json({ status: 200, data: results[0] })
         } else {
-            await res.status(200).json({ status: 1001, message: '删除失败!' });
+            await res.status(404);
         }
     },
 }

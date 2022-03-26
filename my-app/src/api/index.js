@@ -27,3 +27,24 @@ export function getUserInfo(params) {
 export function changePassword(params) {
     return request("post", '/accounts/changepwd', params);
 }
+
+/**
+ * 贷款申请
+ */
+ export function postLoanApply(params) {
+    return request("post", '/accounts/loan/application', params);
+}
+
+/**
+ * 保存身份信息
+ */
+ export function postUserInfo(params) {
+    return request("post", '/accounts/user/info', params);
+}
+
+/**
+ * 获取用户身份信息
+ */
+ export function getUserDetails(params) {
+    return request("get", '/accounts/details', params);
+}
