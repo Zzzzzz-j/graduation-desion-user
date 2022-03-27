@@ -22,6 +22,8 @@ export default function LoanCenter() {
     const [reverseUrl, setReverseUrl] = useState('');
     const [frontPath, setFrontPath] = useState('');
     const [reversePath, setReversePath] = useState('');
+    const [fState, setFState] = useState(0); // 判断编辑个人信息时身份证照片是否被编辑
+    const [rState, setRState] = useState(0);
     const userInfo = useSelector(state => state.user_info);
     const dispatch = useDispatch();
 
@@ -86,8 +88,6 @@ export default function LoanCenter() {
         console.log('Success:', values);
         console.log(idCardFront, 'idCardFront');
         const formData = new FormData();
-        formData.append('file', idCardFront);
-        formData.append('file', idCardReverse);
         const { name, age, gender, phone, id_number, bank_card, address } = values;
         formData.append('id', userInfo.user_id);
         formData.append('name', name);
@@ -101,6 +101,21 @@ export default function LoanCenter() {
             formData.append('frontPath', frontPath);
             formData.append('reversePath', reversePath);
             formData.append('status', 1);
+            if (fState === 1) {
+                formData.append('file', idCardFront);
+                formData.append('fStatus', 1);
+            } else {
+                formData.append('fStatus', 0);
+            }
+            if (rState === 1) {
+                formData.append('file', idCardReverse);
+                formData.append('rStatus', 1);
+            } else {
+                formData.append('rStatus', 0);
+            }
+        } else {
+            formData.append('file', idCardFront);
+            formData.append('file', idCardReverse);
         }
         await postUserInfo(formData).then(res => {
             if (res.status === 200) {
@@ -112,6 +127,8 @@ export default function LoanCenter() {
         await getUserInfo().then(res => {
             dispatch({ type: USERINFO, data: res });
         })
+        setFState(0);
+        setRState(0);
         setVisible(false);
     };
 
@@ -191,7 +208,11 @@ export default function LoanCenter() {
     function handleImageChangeFront(e) {
         e.preventDefault();
 
-        var reader = new FileReader();
+        if (userInfo.info_status === 1) {
+            setFState(1);
+        }
+
+        const reader = new FileReader();
         const file = e.target.files[0];
         setIdCardFront(file);
         console.log(file, 'file');
@@ -206,7 +227,11 @@ export default function LoanCenter() {
     function handleImageChangeReverse(e) {
         e.preventDefault();
 
-        var reader = new FileReader();
+        if (userInfo.info_status === 1) {
+            setRState(1);
+        }
+
+        const reader = new FileReader();
         const file = e.target.files[0];
         setIdCardReverse(file);
         console.log(file, 'file');
@@ -457,7 +482,7 @@ export default function LoanCenter() {
                         style={{ textAlign: 'start' }}
                         rules={[
                             {
-                                required: true,
+                                required: userInfo.info_status === 1 ? false : true,
                                 message: '请上传身份证正面照'
                             },
                         ]}
@@ -477,7 +502,7 @@ export default function LoanCenter() {
                         style={{ textAlign: 'start' }}
                         rules={[
                             {
-                                required: true,
+                                required: userInfo.info_status === 1 ? false : true,
                                 message: '请上传身份证反面照'
                             },
                         ]}
