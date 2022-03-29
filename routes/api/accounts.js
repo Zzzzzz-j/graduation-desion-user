@@ -69,6 +69,16 @@ router.post("/loan/application", passport.authenticate('jwt', { session: false }
 // @access Private
 router.get('/details', passport.authenticate('jwt', { session: false }), controller.getUserDetails);
 
+// @route  GET api/accounts/application
+// @desc   return applicationInfo json
+// @access Private
+router.get('/application', passport.authenticate('jwt', { session: false }), controller.getApplicationList);
+
+// @route  POST api/accounts/cancel/apply
+// @desc   返回json数据 success
+// @access Private
+router.post("/cancel/apply", passport.authenticate('jwt', { session: false }), controller.deleteApply)
+
 // @route  POST api/accounts/user/info
 // @desc   返回json数据 success
 // @access Private

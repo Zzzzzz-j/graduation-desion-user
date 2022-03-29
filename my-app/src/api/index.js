@@ -48,3 +48,17 @@ export function changePassword(params) {
  export function getUserDetails(params) {
     return request("get", '/accounts/details', params);
 }
+
+/**
+ * 获取贷款申请列表
+ */
+ export function getLoanApplyList(params) {
+    return request("get", '/accounts/application', params);
+}
+
+/**
+ * 取消申请
+ */
+ export function postCancelApply(params) {
+    return request("post", '/accounts/cancel/apply', params);
+}

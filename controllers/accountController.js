@@ -84,4 +84,41 @@ module.exports = {
             await res.status(404);
         }
     },
+    async getApplicationList(req, res) {
+        const { pageNum, pageSize, id } = req.query;
+        console.log(id,'id');
+        const results = await model.getApplication(id);
+        const length = results.length;
+        if (length > 0) {
+            results.reverse();
+            if(parseInt(pageNum) * parseInt(pageSize) > length) {
+                res.json({
+                    pageNum: pageNum,
+                    pageSize: pageSize,
+                    total: length,
+                    status: 200,
+                    data: [...results.slice((pageNum - 1) * 10)]
+                })
+            } else {
+                res.json({
+                    pageNum: pageNum,
+                    pageSize: pageSize,
+                    total: length,
+                    status: 200,
+                    data: [...results.slice((pageNum - 1) * 10 , pageNum * 10)]
+                })
+            }
+        } else {
+            await res.json({ status: 200, total: 0, data: [] });
+        }
+    },
+    async deleteApply(req, res) {
+        const { id } = req.body;
+        const results = await model.deleteApplyById(id);
+        if (results.affectedRows) {
+            res.status(200).json({ status: 200, message: '取消成功!' });
+        } else {
+            await res.status(200).json({ status: 1001, message: '取消失败!' });
+        }
+    },
 }

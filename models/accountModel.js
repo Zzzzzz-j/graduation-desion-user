@@ -31,5 +31,11 @@ module.exports = {
     updateUserInfo(id, name, age, gender, phone, id_number, id_card_front, id_card_reverse, address, bank_card) {
         return db.query(`UPDATE e_user_info SET name="${name}", age=${age}, gender="${gender}", phone=${phone}, id_number=${id_number}, 
         id_card_front="${id_card_front}", id_card_reverse="${id_card_reverse}", address="${address}", bank_card=${bank_card} WHERE user_id=${id}`)
+    },
+    getApplication(id) {
+        return db.query(`SELECT * FROM e_loan_application where user_id=${id}`);
+    },
+    deleteApplyById(id) {
+        return db.query(`DELETE FROM e_loan_application WHERE apply_id=${id}`);
     }
 };
