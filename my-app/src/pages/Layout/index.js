@@ -17,6 +17,7 @@ const { Header, Content, Footer } = Layout;
 export default function AccountManage(props) {
     const [visible, setVisible] = useState(false);
     const [state, setState] = useState('/HomePage');
+    const [routeState, setRouteState] = useState(null);
 
     const dispatch = useDispatch();
     const userInfo = useSelector(state => state.user_info);
@@ -123,7 +124,7 @@ export default function AccountManage(props) {
                             </a>
                         </Dropdown>
                     </div>
-                    <Menu className="menu" theme="light" mode="horizontal" defaultSelectedKeys={[location.pathname]}>
+                    <Menu className="menu" theme="light" mode="horizontal" selectedKeys={[location.pathname]}>
                         <Menu.Item className="menu-item" key="/HomePage" onClick={() => { menuChange('/HomePage') }}>首页</Menu.Item>
                         <Menu.Item className="menu-item" key="/LoanCenter" onClick={() => { menuChange('/LoanCenter') }}>贷款中心</Menu.Item>
                         <Menu.Item className="menu-item" key="/MyLoan" onClick={() => { menuChange('/MyLoan') }}>我的贷款</Menu.Item>

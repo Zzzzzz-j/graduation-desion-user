@@ -151,7 +151,7 @@ export default function MyLoan() {
                 <h1 style={{ fontSize: '28px', fontWeight: '500', textAlign: 'start' }}>
                     我的贷款
                 </h1>
-                <Table columns={columns} dataSource={tableData} pagination={paginationProps} rowKey={(record) => record.user_id} />
+                <Table columns={columns} dataSource={tableData} pagination={paginationProps} rowKey={(record) => record.apply_id} />
             </div>
             <Modal
                 title="取消申请"
