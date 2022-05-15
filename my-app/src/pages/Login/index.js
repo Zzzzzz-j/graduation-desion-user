@@ -21,6 +21,7 @@ export default function Login() {
             console.log(res);
             if (res.status === 200) {
                 message.success('注册成功!');
+                container.current.classList.remove("right-panel-active")
             } else {
                 message.error(res.message);
             }
