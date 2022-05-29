@@ -52,6 +52,7 @@ export default function LoanCenter() {
         }).then(res => {
             if (res.status === 200) {
                 message.success(res.message);
+                form.resetFields();
             } else {
                 message.error(res.message);
             }

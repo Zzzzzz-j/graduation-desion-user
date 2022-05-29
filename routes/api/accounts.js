@@ -101,7 +101,7 @@ router.post("/user/info", passport.authenticate('jwt', { session: false }), uplo
             })
         }
         if (req.body.rStatus == 1) {
-            const reverse = req.files[1];
+            const reverse = req.files[0];
             var rObj = fomattingFile(reverse);
             fs.unlink(`routes/public/images/${reversePath.split('=')[1]}`, function (error) {
                 if (error) {

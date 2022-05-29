@@ -14,7 +14,7 @@ module.exports = {
         return db.query(`SELECT * FROM e_user where phone='${phone}' and password='${password}'`);
     },
     updatePassword(password,id) {
-        return db.query(`UPDATE e_user SET password=${password} WHERE user_id=${id}`)
+        return db.query(`UPDATE e_user SET password='${password}' WHERE user_id=${id}`)
     },
     saveLoanApply(user_id, name, money, start_time, end_time, time, rate, approve) {
         return db.query(`insert into e_loan_application set ?`, { user_id, name, money, start_time, end_time, time, rate, approve });
